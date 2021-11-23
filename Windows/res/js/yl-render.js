@@ -416,7 +416,7 @@ YL.render = function (data) {
         if (first && !YL.static.serialNumber) {
           YL.onReady(function () {
             setTimeout(function () {
-              YL.msg("Xianqi's Windows", 'Hello，你好，欢迎来到 Windows 小分站！<br/>个人主页：' + '<a style="color: white" target="_blank" href="http://ze520.cn/">ze520.cn </a><br />本网站 UI 由 ' + '<a style="color: white" target="_blank" href="https://ylui.yuri2.cn"> YLUI </a> 强力驱动<p>欢迎使用支付宝扫描二维码对作者进行捐赠~<br/><br/><img style="width: 100%" src="https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/reward/alipay.jpg"/></p>');
+              YL.msg("BigBug's Windows", 'Hello，你好，欢迎来到 Windows 小分站！<br/>个人主页：' + '<a style="color: white" target="_blank" href="https://bigbug888.github.io/">ze520.cn </a><br />本网站 UI 由 ' + '<a style="color: white" target="_blank" href="https://ylui.yuri2.cn"> 哇咔咔 </a> 强力驱动<p>欢迎使用支付宝扫描二维码对作者进行捐赠~<br/><br/><img style="width: 100%" src="https://z3.ax1x.com/2021/11/24/oCuIh9.jpg"/></p>');
             }, 1500)
           });
         }
