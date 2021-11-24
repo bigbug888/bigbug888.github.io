@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>内网信息收集</title>
+      <link href="/posts/3.html"/>
+      <url>/posts/3.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="内网信息收集"><a href="#内网信息收集" class="headerlink" title="内网信息收集"></a>内网信息收集</h1><h2 id="工作组信息收集"><a href="#工作组信息收集" class="headerlink" title="工作组信息收集"></a>工作组信息收集</h2><h3 id="内网信息收集-1"><a href="#内网信息收集-1" class="headerlink" title="内网信息收集"></a>内网信息收集</h3><ol><li><p>查询网络配置：ipconfig /all</p></li><li><p>查询用户列表： <img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111242351160.png" alt="image-20211124235146030"></p></li><li><p>查询进程列表：tasklist /v    和     wmic process list brief<img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250107584.png" alt="image-20211125010744512"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250108396.png" alt="image-20211125010823342"></p></li><li><p>查询操作系统以及安装软件版本信息</p><ol><li><p>获取操作系统和版本信息</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250214146.png"></p></li><li><p>查看安装软件以及版本，路径</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250116426.png" alt="image-20211125011607359"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250117372.png" alt="image-20211125011752320"></p></li></ol></li></ol><ol start="3"><li><p>查询端口列表</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250121208.png" alt="image-20211125012100151"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250122296.png" alt="image-20211125012232244"></p></li><li><p>查询补丁列表</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250123033.png" alt="image-20211125012356960"></p></li><li><p>查询本机共享</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250128617.png" alt="image-20211125012812559"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250132135.png" alt="image-20211125013219077"></p></li><li><p>查询防火墙相关配置</p><p>​    1，关闭防火墙 A，windows server 2003系统及以前版本 Netsh firewall set opmode disable </p><p>​                            B，windows server 2003 之后系统版本 Netsh advfirewall set allprofiles state off/on </p><p>​    2，查看防火墙配置 Netsh firewall show config</p></li></ol><ol start="7"><li><p>查询并且开启远程连接服务</p><p>查询并开启远程连接服务 查看远程连接端口号 Reg query “hkey_local_machine\system\currentcontrolset\control\terminal  server\winstations\RDP-Tcp” /v portnumber </p><p>查看3389是否开启 Netstat –ano | findstr “3389” 开启远程连接服务 Windows server 2008和windows server 2016开启3389的方法 1, wmic /namespace:\root\cimv2\terminalservices path win32_terminalservicesetting where  (__CLASS != “”) call setallowtsconnections 1  2, wmic /namespace:\root\cimv2\terminalservices path win32_tsgeneralsetting where  (TerminalName =’RDP-Tcp’) call setuserauthenticationrequired 1  3, reg add “HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server” /v fSingleSessionPerUser /t  REG_DWORD /d 0 /f 以上前提条件是确保Windows Management Instrumentation（Winmgmt）服务已正常启动，权限需要</p></li><li><p>查看当前权限</p><ol><li><p>whoami（本地普通用户，域内用户bigbug888/administrator,whoami /all</p></li><li><p>Net user bigbug888/domain</p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250206281.png" alt="image-20211125015956851" style="zoom: 50%;"></li></ol></li><li><p>域内信息收集<img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111250206720.png" alt="image-20211125020644659"></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 内网 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 渗透 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>博客与博主</title>
       <link href="/posts/1.html"/>
       <url>/posts/1.html</url>
