@@ -6,7 +6,7 @@
   <link href="https://bigbug888.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigbug888.github.io/"/>
-  <updated>2021-09-07T14:52:39.538Z</updated>
+  <updated>2021-11-24T04:46:06.014Z</updated>
   <id>https://bigbug888.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://bigbug888.github.io/posts/1.html"/>
     <id>https://bigbug888.github.io/posts/1.html</id>
     <published>2021-05-27T13:00:00.000Z</published>
-    <updated>2021-09-07T14:52:39.538Z</updated>
+    <updated>2021-11-24T04:46:06.014Z</updated>
     
-    <content type="html"><![CDATA[<p>相遇皆是缘分</p><h3 id="为什么建博客？"><a href="#为什么建博客？" class="headerlink" title="为什么建博客？"></a>为什么建博客？</h3><p>肿么说了! 纯属个人兴趣，好玩，唉，就是玩!嘻嘻! 会有些成就感吧,拥有一个自己的博客写一些自己感兴趣的事或物,不是一件很酷的事嘛!</p><h3 id="展望博客"><a href="#展望博客" class="headerlink" title="展望博客"></a>展望博客</h3><p>我会整理一些个人所学的知识（学前端的，也会捣鼓捣鼓一些其它的专业的知识）或生活方面有兴趣的事发到博客上供大家观摩</p><h3 id="关于博主"><a href="#关于博主" class="headerlink" title="关于博主"></a>关于博主</h3><p>有位可爱的（小）朋友，给我取名叫 “仙气”，这是也是我博客上自居 “仙气” 的由来。喜欢自己所喜欢的，做自己想做的，追求自由与潇洒，多酷啊！ 想法是美好的，可现实… …   给大家推荐一首诗吧</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"> 《自由与爱情》---作者:裴多菲​ 生命诚可贵​ 爱情价更高​ 若为自由故​ 二者皆可抛<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>溜溜球啦！</p>]]></content>
+    <content type="html"><![CDATA[<p>相遇皆是缘分</p><h3 id="为什么建博客？"><a href="#为什么建博客？" class="headerlink" title="为什么建博客？"></a>为什么建博客？</h3><p>肿么说了! 纯属个人兴趣，好玩，唉，就是玩!嘻嘻! 会有些成就感吧,拥有一个自己的博客写一些自己感兴趣的事或物,不是一件很酷的事嘛!</p><h3 id="展望博客"><a href="#展望博客" class="headerlink" title="展望博客"></a>展望博客</h3><p>我会整理一些个人所学的知识（学前端的，也会捣鼓捣鼓一些其它的专业的知识）或生活方面有兴趣的事发到博客上供大家观摩</p><p>溜溜球啦！</p>]]></content>
     
     
       
@@ -38,6 +38,30 @@
     
     
     <category term="想法" scheme="https://bigbug888.github.io/tags/%E6%83%B3%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>内网环境搭建1</title>
+    <link href="https://bigbug888.github.io/posts/2.html"/>
+    <id>https://bigbug888.github.io/posts/2.html</id>
+    <published>2021-05-27T13:00:00.000Z</published>
+    <updated>2021-11-24T04:44:18.333Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-windows-server-2016"><a href="#1-windows-server-2016" class="headerlink" title="1.windows server 2016"></a><strong>1.windows server 2016</strong></h3><p><img src="https://img-blog.csdnimg.cn/921ac98f6ae742c2952462ef5f61b2ae.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>管理-&gt;添加新角色</p><h2 id="2-安装域控制器和dns服务"><a href="#2-安装域控制器和dns服务" class="headerlink" title="2.安装域控制器和dns服务"></a><strong>2.安装域控制器和dns服务</strong></h2><p><img src="https://img-blog.csdnimg.cn/1754ed5a4c10415c95b0aad91279e6d9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>勾选active directory域服务器，dns服务器<br><img src="https://img-blog.csdnimg.cn/6336cf1060d64d31bae93ccaceb3b040.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_19,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/9e5ed3942b8b405787c6569491ac3007.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p><h2 id="3-设置ip"><a href="#3-设置ip" class="headerlink" title="3.设置ip"></a><strong>3.设置ip</strong></h2><p><img src="https://img-blog.csdnimg.cn/799ad412ead14a799a09c4e4c9efbccf.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p><h2 id="4-更改计算机名字"><a href="#4-更改计算机名字" class="headerlink" title="4.更改计算机名字"></a><strong>4.更改计算机名字</strong></h2><p><img src="https://img-blog.csdnimg.cn/f57de7858fa04865a13ffe5022cfc57f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p><h2 id="5-升级服务器（升级为域控）"><a href="#5-升级服务器（升级为域控）" class="headerlink" title="5.升级服务器（升级为域控）"></a><strong>5.升级服务器（升级为域控）</strong></h2><p><img src="https://img-blog.csdnimg.cn/2f5377a400894c819b7d1c92faa578ce.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/b3103d49c8224f8990c8a3c893f7760c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/0d609280e39f454caeebf26aa4c1406b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_17,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>遇到下面这种情况是因为电脑管理员密码没有设置<br><img src="https://img-blog.csdnimg.cn/a97b37caac8040589f06aef2f4819ff6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p><h2 id="6-创建active-directory用户"><a href="#6-创建active-directory用户" class="headerlink" title="6.创建active directory用户"></a><strong>6.创建active directory用户</strong></h2><p><img src="https://img-blog.csdnimg.cn/b0c3d473919c4071a066c2018ce1db15.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/bc20ff7a1c4d43c69008ddb22bc13d5a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/415a953052304f1b985b6c568303e5e0.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/9268f3fe52c940c18d503a641b3c498d.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>然后使用win7加入该域<br><img src="https://img-blog.csdnimg.cn/ef71c64ff7944a2690f5ca07066389b3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_20,color_FFFFFF,t_70,g_se,x_16" alt="123" style="zoom:67%;"></p><p><img src="https://img-blog.csdnimg.cn/83992e8a4c7d45b9bd2e32aa80f24a6f.png?x-oss-process=image/watermark,%EF%BC%8Ctype_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6LCB5ouU5LqG5oiR55qE572R57q_5ZGA,size_17,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;1-windows-server-2016&quot;&gt;&lt;a href=&quot;#1-windows-server-2016&quot; class=&quot;headerlink&quot; title=&quot;1.windows server 2016&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.windows serve</summary>
+      
+    
+    
+    
+    <category term="网安" scheme="https://bigbug888.github.io/categories/%E7%BD%91%E5%AE%89/"/>
+    
+    
+    <category term="渗透" scheme="https://bigbug888.github.io/tags/%E6%B8%97%E9%80%8F/"/>
     
   </entry>
   
