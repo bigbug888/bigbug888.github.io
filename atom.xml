@@ -144,30 +144,6 @@
   </entry>
   
   <entry>
-    <title>Nginx</title>
-    <link href="https://bigbug888.github.io/posts/15.html"/>
-    <id>https://bigbug888.github.io/posts/15.html</id>
-    <published>2021-05-27T13:00:00.000Z</published>
-    <updated>2021-11-25T19:20:27.367Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一、Nginx介绍"><a href="#一、Nginx介绍" class="headerlink" title="一、Nginx介绍"></a>一、Nginx介绍</h2><h4 id="1-1-为什么要使用Nginx"><a href="#1-1-为什么要使用Nginx" class="headerlink" title="1.1 为什么要使用Nginx"></a>1.1 为什么要使用Nginx</h4><h6 id="1-1-静态资源访问"><a href="#1-1-静态资源访问" class="headerlink" title="1.1 静态资源访问"></a>1.1 静态资源访问</h6><blockquote><p>前端项目在进行服务器部署的时候，如果基于tomcat则不能满足并发的需求，因此我们需要一种能够处理更高并发的适用于静态资源的服务器</p></blockquote><h6 id="1-2-代理服务器-负载均衡"><a href="#1-2-代理服务器-负载均衡" class="headerlink" title="1.2 代理服务器-负载均衡"></a>1.2 代理服务器-负载均衡</h6><h4 id="1-2-Nginx介绍"><a href="#1-2-Nginx介绍" class="headerlink" title="1.2 Nginx介绍"></a>1.2 Nginx介绍</h4><blockquote><p><em>Nginx</em> (engine x) 是一个高性能的HTTP和反向代理web服务器</p><ul><li>Nginx 是基于HTTP协议的请求/响应（部署web项目）  —-    静态资源服务器</li><li>Nginx可以作为反向代理服务器    —-   负载均衡服务器(代理服务器)</li></ul></blockquote><p>Nginx特点：</p><ul><li>稳定性极强，可以实现7*24不间断运行</li><li>提供简洁、直观的配置</li><li>占用内存很小、并发能力很强（5w+）</li></ul><h2 id="二、Nginx下载、安装及配置"><a href="#二、Nginx下载、安装及配置" class="headerlink" title="二、Nginx下载、安装及配置"></a>二、Nginx下载、安装及配置</h2><h4 id="2-1-windows环境"><a href="#2-1-windows环境" class="headerlink" title="2.1 windows环境"></a>2.1 windows环境</h4><h6 id="2-1-1下载"><a href="#2-1-1下载" class="headerlink" title="2.1 .1下载"></a>2.1 .1下载</h6><p><a href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></p><h6 id="2-1-2-解压到指定目录"><a href="#2-1-2-解压到指定目录" class="headerlink" title="2.1.2 解压到指定目录"></a>2.1.2 解压到指定目录</h6><p>解压即可</p><h6 id="2-1-3-运行及访问"><a href="#2-1-3-运行及访问" class="headerlink" title="2.1.3 运行及访问"></a>2.1.3 运行及访问</h6><ul><li><p>执行根路径下的nginx.exe</p><p><img src="imgs/1620959194204.png" alt="1620959194204"></p></li><li><p>nginx 默认端口 80,所以直接访问 ： <a href="http://localhost/">http://localhost</a></p><p><img src="imgs/1620959305130.png" alt="1620959305130"></p></li></ul><h4 id="2-2-Linux环境"><a href="#2-2-Linux环境" class="headerlink" title="2.2 Linux环境"></a>2.2 Linux环境</h4><h2 id="三、Nginx配置"><a href="#三、Nginx配置" class="headerlink" title="三、Nginx配置"></a>三、Nginx配置</h2><ul><li><p>配置文件说明</p><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">#user  nobody;# 配置处理器个数（应不大于cpu核心数）worker_processes  1;# 配置nginx运行日志文件error_log  logs/error.log;# 配置Nginx进程的进程号的存储文件# pid        logs/nginx.pid;# 配置nginx连接数，数值越大并发能力越强events {    worker_connections  2000;}http {    include       mime.types;    default_type  application/octet-stream;    sendfile        on;    keepalive_timeout  65;    server {# 配置nginx端口号        listen       80;        server_name  localhost;# 地址映射        #location / {        #    root   html;        #    index  index.html index.htm;        #} location / {            root   fmall-static;            index  index.html index.htm;        }       # 指定错误页面        error_page   500 502 503 504  /50x.html;        location = /50x.html {            root   html;        }          }}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul><h2 id="四、锋迷商城—前端部署"><a href="#四、锋迷商城—前端部署" class="headerlink" title="四、锋迷商城—前端部署"></a>四、锋迷商城—前端部署</h2><ul><li><p>安装Nginx</p></li><li><p>将前端项目fmall-static拷贝到nginx的根目录</p></li><li><p>修改nginx.conf：</p><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">location / {root   fmall-static;index  index.html index.htm;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;一、Nginx介绍&quot;&gt;&lt;a href=&quot;#一、Nginx介绍&quot; class=&quot;headerlink&quot; title=&quot;一、Nginx介绍&quot;&gt;&lt;/a&gt;一、Nginx介绍&lt;/h2&gt;&lt;h4 id=&quot;1-1-为什么要使用Nginx&quot;&gt;&lt;a href=&quot;#1-1-为什么要使用</summary>
-      
-    
-    
-    
-    <category term="Java" scheme="https://bigbug888.github.io/categories/Java/"/>
-    
-    
-    <category term="springboot项目" scheme="https://bigbug888.github.io/tags/springboot%E9%A1%B9%E7%9B%AE/"/>
-    
-  </entry>
-  
-  <entry>
     <title>微信支付</title>
     <link href="https://bigbug888.github.io/posts/13.html"/>
     <id>https://bigbug888.github.io/posts/13.html</id>
@@ -183,6 +159,30 @@
 &lt;p&gt;通过微信平台为商家提供代收款服务&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&quot;1-微信支付</summary>
+      
+    
+    
+    
+    <category term="Java" scheme="https://bigbug888.github.io/categories/Java/"/>
+    
+    
+    <category term="springboot项目" scheme="https://bigbug888.github.io/tags/springboot%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx</title>
+    <link href="https://bigbug888.github.io/posts/15.html"/>
+    <id>https://bigbug888.github.io/posts/15.html</id>
+    <published>2021-05-27T13:00:00.000Z</published>
+    <updated>2021-11-25T19:20:27.367Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、Nginx介绍"><a href="#一、Nginx介绍" class="headerlink" title="一、Nginx介绍"></a>一、Nginx介绍</h2><h4 id="1-1-为什么要使用Nginx"><a href="#1-1-为什么要使用Nginx" class="headerlink" title="1.1 为什么要使用Nginx"></a>1.1 为什么要使用Nginx</h4><h6 id="1-1-静态资源访问"><a href="#1-1-静态资源访问" class="headerlink" title="1.1 静态资源访问"></a>1.1 静态资源访问</h6><blockquote><p>前端项目在进行服务器部署的时候，如果基于tomcat则不能满足并发的需求，因此我们需要一种能够处理更高并发的适用于静态资源的服务器</p></blockquote><h6 id="1-2-代理服务器-负载均衡"><a href="#1-2-代理服务器-负载均衡" class="headerlink" title="1.2 代理服务器-负载均衡"></a>1.2 代理服务器-负载均衡</h6><h4 id="1-2-Nginx介绍"><a href="#1-2-Nginx介绍" class="headerlink" title="1.2 Nginx介绍"></a>1.2 Nginx介绍</h4><blockquote><p><em>Nginx</em> (engine x) 是一个高性能的HTTP和反向代理web服务器</p><ul><li>Nginx 是基于HTTP协议的请求/响应（部署web项目）  —-    静态资源服务器</li><li>Nginx可以作为反向代理服务器    —-   负载均衡服务器(代理服务器)</li></ul></blockquote><p>Nginx特点：</p><ul><li>稳定性极强，可以实现7*24不间断运行</li><li>提供简洁、直观的配置</li><li>占用内存很小、并发能力很强（5w+）</li></ul><h2 id="二、Nginx下载、安装及配置"><a href="#二、Nginx下载、安装及配置" class="headerlink" title="二、Nginx下载、安装及配置"></a>二、Nginx下载、安装及配置</h2><h4 id="2-1-windows环境"><a href="#2-1-windows环境" class="headerlink" title="2.1 windows环境"></a>2.1 windows环境</h4><h6 id="2-1-1下载"><a href="#2-1-1下载" class="headerlink" title="2.1 .1下载"></a>2.1 .1下载</h6><p><a href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></p><h6 id="2-1-2-解压到指定目录"><a href="#2-1-2-解压到指定目录" class="headerlink" title="2.1.2 解压到指定目录"></a>2.1.2 解压到指定目录</h6><p>解压即可</p><h6 id="2-1-3-运行及访问"><a href="#2-1-3-运行及访问" class="headerlink" title="2.1.3 运行及访问"></a>2.1.3 运行及访问</h6><ul><li><p>执行根路径下的nginx.exe</p><p><img src="imgs/1620959194204.png" alt="1620959194204"></p></li><li><p>nginx 默认端口 80,所以直接访问 ： <a href="http://localhost/">http://localhost</a></p><p><img src="imgs/1620959305130.png" alt="1620959305130"></p></li></ul><h4 id="2-2-Linux环境"><a href="#2-2-Linux环境" class="headerlink" title="2.2 Linux环境"></a>2.2 Linux环境</h4><h2 id="三、Nginx配置"><a href="#三、Nginx配置" class="headerlink" title="三、Nginx配置"></a>三、Nginx配置</h2><ul><li><p>配置文件说明</p><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">#user  nobody;# 配置处理器个数（应不大于cpu核心数）worker_processes  1;# 配置nginx运行日志文件error_log  logs/error.log;# 配置Nginx进程的进程号的存储文件# pid        logs/nginx.pid;# 配置nginx连接数，数值越大并发能力越强events {    worker_connections  2000;}http {    include       mime.types;    default_type  application/octet-stream;    sendfile        on;    keepalive_timeout  65;    server {# 配置nginx端口号        listen       80;        server_name  localhost;# 地址映射        #location / {        #    root   html;        #    index  index.html index.htm;        #} location / {            root   fmall-static;            index  index.html index.htm;        }       # 指定错误页面        error_page   500 502 503 504  /50x.html;        location = /50x.html {            root   html;        }          }}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul><h2 id="四、锋迷商城—前端部署"><a href="#四、锋迷商城—前端部署" class="headerlink" title="四、锋迷商城—前端部署"></a>四、锋迷商城—前端部署</h2><ul><li><p>安装Nginx</p></li><li><p>将前端项目fmall-static拷贝到nginx的根目录</p></li><li><p>修改nginx.conf：</p><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">location / {root   fmall-static;index  index.html index.htm;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一、Nginx介绍&quot;&gt;&lt;a href=&quot;#一、Nginx介绍&quot; class=&quot;headerlink&quot; title=&quot;一、Nginx介绍&quot;&gt;&lt;/a&gt;一、Nginx介绍&lt;/h2&gt;&lt;h4 id=&quot;1-1-为什么要使用Nginx&quot;&gt;&lt;a href=&quot;#1-1-为什么要使用</summary>
       
     
     
