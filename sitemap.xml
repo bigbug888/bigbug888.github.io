@@ -2,14 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://bigbug888.github.io/posts/16.html</loc>
+    <loc>https://bigbug888.github.io/posts/20.html</loc>
     
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2021-12-03</lastmod>
     
   </url>
   
   <url>
     <loc>https://bigbug888.github.io/posts/19.html</loc>
+    
+    <lastmod>2021-12-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bigbug888.github.io/posts/16.html</loc>
     
     <lastmod>2021-12-01</lastmod>
     
@@ -193,7 +200,7 @@
 
   <url>
     <loc>https://bigbug888.github.io/</loc>
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -201,35 +208,42 @@
   
   <url>
     <loc>https://bigbug888.github.io/tags/%E6%83%B3%E6%B3%95/</loc>
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2021-12-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bigbug888.github.io/tags/web/</loc>
+    <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bigbug888.github.io/tags/%E6%B8%97%E9%80%8F/</loc>
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bigbug888.github.io/tags/%E5%86%85%E7%BD%91/</loc>
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bigbug888.github.io/tags/springboot%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bigbug888.github.io/tags/Springboot%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -238,21 +252,21 @@
   
   <url>
     <loc>https://bigbug888.github.io/categories/%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bigbug888.github.io/categories/%E7%BD%91%E5%AE%89/</loc>
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bigbug888.github.io/categories/Java/</loc>
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
